@@ -1,0 +1,24 @@
+version: "3"
+services:
+  #下面这个二级域名apache2是自己随便定义的service的名称      
+  apache2:
+    # 下面这个是对应服务要启动的镜像
+    image: baiyu96/gerrit-apache2:v3
+    ports:
+      - "8888:8888"
+    command: /bin/bash /start.sh
+    networks:
+      - webnet
+  mygerrit:
+    image: baiyu96/mygerrit:v1
+    command: /bin/bash /start.sh
+    ports:
+      - ":8081"
+    hostname: mygerrit
+    networks:
+      - webnet
+
+networks:
+  webnet:
+              
+
